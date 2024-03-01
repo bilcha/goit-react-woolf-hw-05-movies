@@ -1,0 +1,19 @@
+.inputField {
+  width: 250px;
+  border: 1px solid #c6c6c6;
+  border-radius: 3px 0 0 3px;
+  padding: 4px;
+}
+
+.searchBtn {
+  border: none;
+  padding: 5px 16px;
+  border-radius: 0 3px 3px 0;
+  background-color: #016c01;
+  color: #fff;
+  font-weight: 600;
+}
+
+.searchBtn:hover {
+  background-color: #0fab0f;
+}

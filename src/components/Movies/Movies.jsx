@@ -2,37 +2,41 @@ import MoviesList from 'components/MoviesList/MoviesList';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styles from './Movies.module.css';
+import SearchForm from 'components/SearchForm/SearchForm';
+import { getFilteredMoviesAPI } from 'api/moviesAPI';
 
 const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [moviesItems, setMoviesItems] = useState([]);
   const [, setSearchParams] = useSearchParams();
   const [moviesListIsShowing, setMoviesListIsShowing] = useState(false);
-  const searchMovieHandler = e => {
-    e.preventDefault();
-    setSearchParams({ query: searchQuery });
-    // setSearchQuery('');
-    setMoviesListIsShowing(true);
+  const [error, setError] = useState('');
+
+  const getMoviesByName = queryParam => {
+    const getMovies = async () => {
+      try {
+        let data;
+        data = await getFilteredMoviesAPI(queryParam);
+        setSearchParams({ query: queryParam });
+        if (data.length === 0) {
+          setError("Sorry, we didn't find anything for your request.");
+        } else {
+          setMoviesListIsShowing(true);
+          setMoviesItems(data);
+        }
+      } catch (error) {
+        console.log(error);
+        setError('Oops... Something went wrong. Please try again later.');
+      } finally {
+      }
+    };
+    getMovies();
   };
-  const handleChange = e => {
-    let filter = e.target.value.trim();
-    filter.length > 0 && setSearchQuery(filter);
-  };
+
   return (
     <div className={styles.formWrapper}>
-      <form onSubmit={searchMovieHandler}>
-        <label htmlFor="movieSearch"></label>
-        <input
-          className={styles.inputField}
-          id="movieSearch"
-          type="search"
-          name="name"
-          required
-          value={searchQuery}
-          onChange={handleChange}
-        />
-        <button className={styles.searchBtn}>Search</button>
-      </form>
-      {moviesListIsShowing && <MoviesList />}
+      <SearchForm getMoviesByName={getMoviesByName} />
+      {moviesListIsShowing && <MoviesList data={moviesItems} />}
+      {error && <h5>{error}</h5>}
     </div>
   );
 };
