@@ -40,8 +40,8 @@ const MovieDetailPage = () => {
       <button className={styles.goBackBtn} onClick={handleBack}>
         Go Back
       </button>
-      {loading && <h1>Loading</h1>}
-      {error && <h1>{error}</h1>}
+      {loading && <h2>Loading</h2>}
+      {error && <h4>{error}</h4>}
       {details && (
         <div>
           <MovieDetails details={details} />

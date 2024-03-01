@@ -7,7 +7,6 @@ const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [, setSearchParams] = useSearchParams();
   const [moviesListIsShowing, setMoviesListIsShowing] = useState(false);
-
   const searchMovieHandler = e => {
     e.preventDefault();
     setSearchParams({ query: searchQuery });

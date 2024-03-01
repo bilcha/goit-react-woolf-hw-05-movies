@@ -38,8 +38,8 @@ const MoviesList = () => {
 
   return (
     <>
-      {loading && <h1>Loadimg</h1>}
-      {error && <h1>{error}</h1>}
+      {loading && <h2>Loadimg</h2>}
+      {error && <h4>{error}</h4>}
       <ul className={styles.moviesList}>
         {moviesItems.map(el => {
           return (

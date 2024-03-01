@@ -33,7 +33,7 @@ const Cast = () => {
 
   return (
     <div>
-      {loading && <h1>Loadimg</h1>}
+      {loading && <h2>Loadimg</h2>}
       {error && <h5>{error}</h5>}
       <ul className={styles.castList}>
         {castData &&
