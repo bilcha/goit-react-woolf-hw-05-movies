@@ -1,5 +1,5 @@
 import MainLayout from 'layouts/MainLayout/MainLayout';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 
 const HomePage = lazy(() => import('page/HomePage/HomePage'));
@@ -23,7 +23,7 @@ const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
 
-          <Route path="*" element={<HomePage />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     </>
