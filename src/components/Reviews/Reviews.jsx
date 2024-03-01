@@ -1,22 +1,21 @@
 import { getMovieDetailsDataAPI } from 'api/moviesAPI';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './Reviews.module.css';
 
 const Reviews = () => {
+  const { movieId } = useParams();
   const [reviewData, setReviewData] = useState([]);
-  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const path = location.pathname.slice(8);
     const getAllReviews = async () => {
       try {
         let data;
-        data = await getMovieDetailsDataAPI(path);
+        data = await getMovieDetailsDataAPI(`${movieId}/reviews`);
         if (data.results.length === 0) {
-          setError('There is no reviews for this movie yet.');
+          setError('There are no reviews for this movie yet.');
         } else {
           setReviewData(data.results);
         }
@@ -28,15 +27,15 @@ const Reviews = () => {
       }
     };
     getAllReviews();
-  }, [location]);
+  }, [movieId]);
 
   return (
     <div>
       {loading && <h2>Loadimg</h2>}
       {error && <h5>{error}</h5>}
-      <ul className={styles.reviewsList}>
-        {reviewData &&
-          reviewData.map(el => {
+      {reviewData.length > 0 && (
+        <ul className={styles.reviewsList}>
+          {reviewData.map(el => {
             return (
               <li key={el.id} className={styles.reviewsListItem}>
                 <h3>{el.author}</h3>
@@ -44,7 +43,8 @@ const Reviews = () => {
               </li>
             );
           })}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 };
