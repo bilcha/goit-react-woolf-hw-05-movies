@@ -1,0 +1,29 @@
+.castList {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.castListItem {
+  width: 20%;
+  text-align: center;
+}
+
+.actorName {
+  margin-bottom: 0;
+  margin-top: 12px;
+}
+
+.charachterField {
+  margin-top: 8px;
+  font-size: 14px;
+  margin-bottom: 46px;
+}
+
+.castListImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+}

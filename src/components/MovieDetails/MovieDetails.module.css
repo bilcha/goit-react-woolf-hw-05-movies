@@ -1,0 +1,15 @@
+.wrapper {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #b5b5b5;
+}
+
+.flexWrap {
+  display: flex;
+  gap: 20px;
+}
+
+.poster {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

@@ -18,3 +18,11 @@ code {
 .container {
   padding: 20px;
 }
+
+.active {
+  color: #016c01;
+}
+
+button {
+  cursor: pointer;
+}

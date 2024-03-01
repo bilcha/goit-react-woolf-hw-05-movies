@@ -1,22 +1,39 @@
+import MoviesList from 'components/MoviesList/MoviesList';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import styles from './Movies.module.css';
+
 const Movies = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [, setSearchParams] = useSearchParams();
+  const [moviesListIsShowing, setMoviesListIsShowing] = useState(false);
+
   const searchMovieHandler = e => {
     e.preventDefault();
+    setSearchParams({ query: searchQuery });
+    // setSearchQuery('');
+    setMoviesListIsShowing(true);
+  };
+  const handleChange = e => {
+    let filter = e.target.value.trim();
+    filter.length > 0 && setSearchQuery(filter);
   };
   return (
-    <div className="container">
+    <div className={styles.formWrapper}>
       <form onSubmit={searchMovieHandler}>
         <label htmlFor="movieSearch"></label>
         <input
-          // className={styles.inputField}
+          className={styles.inputField}
           id="movieSearch"
-          type="text"
+          type="search"
           name="name"
           required
-          // value={name}
-          // onChange={handleChange}
+          value={searchQuery}
+          onChange={handleChange}
         />
-        <button>Search</button>
+        <button className={styles.searchBtn}>Search</button>
       </form>
+      {moviesListIsShowing && <MoviesList />}
     </div>
   );
 };

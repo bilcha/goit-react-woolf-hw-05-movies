@@ -1,0 +1,24 @@
+.header {
+  border-bottom: 1px solid rgb(161, 161, 161);
+  box-shadow: 0px 4px 3px -3px;
+  ;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  font-weight: 800;
+}
+
+.navLink>a {
+  text-decoration: none;
+}
+
+.active {
+  color: green
+}
+
+.navLink>a:hover {
+  text-decoration: underline;
+}
